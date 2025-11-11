@@ -10,18 +10,25 @@ Open `index.html` in a web browser.
 
 A concise 15-slide website presentation based on Gradient's vision and product story. Built using React, Tailwind CSS, and simple gradient backgrounds.
 
-## Editing Slides
+## Editing Slides (WYSIWYG)
 
-All slide content is directly in `index.html`. To edit:
+**Click to edit in browser:**
 
-1. Open `index.html` in your code editor
-2. Find the `slides` array (around line 35)
-3. Edit the `title` and `subtitle` text
-4. Save the file
-5. Refresh browser to see changes
-6. Commit to git for version history
+1. Open `index.html` in a web browser
+2. Click any title or subtitle text to edit
+3. Changes auto-save to localStorage as you type
+4. Navigate with arrow keys
 
-**One file. That's it.** Edit HTML → commit → done.
+**Save to git:**
+
+1. Open browser console (F12 or Cmd+Option+I)
+2. Type: `exportSlides()`
+3. The slides array is copied to your clipboard
+4. Open `index.html` in your editor, find the `slides` array (line ~33)
+5. Replace the entire array with the clipboard contents
+6. Save and commit to git
+
+**That's it.** Edit in browser → export to console → paste into HTML → commit.
 
 ## Links
 
