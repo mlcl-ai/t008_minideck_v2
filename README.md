@@ -4,7 +4,7 @@
 
 ## Quick Start
 
-Open `index.html` in a web browser (or use a local server like `python -m http.server`).
+Open `index.html` in a web browser.
 
 ## Description
 
@@ -12,15 +12,16 @@ A concise 15-slide website presentation based on Gradient's vision and product s
 
 ## Editing Slides
 
-All slide content is stored in `slides.json`. To edit:
+All slide content is directly in `index.html`. To edit:
 
-1. Open `slides.json` in your code editor
-2. Edit the `title` and `subtitle` fields for any slide
-3. Save the file
-4. Refresh the browser to see changes
-5. Commit changes to git for version history
+1. Open `index.html` in your code editor
+2. Find the `slides` array (around line 35)
+3. Edit the `title` and `subtitle` text
+4. Save the file
+5. Refresh browser to see changes
+6. Commit to git for version history
 
-**That's it.** No localStorage, no export buttons - just edit JSON, commit to git.
+**One file. That's it.** Edit HTML → commit → done.
 
 ## Links
 
