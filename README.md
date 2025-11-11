@@ -4,28 +4,33 @@
 
 ## Quick Start
 
-- **Present**: Open `index.html` 
-- **Edit**: Open `editor.html`
+Open `index.html` in a web browser (or use a local server like `python -m http.server`).
 
-## Editing Workflow
+## Description
 
-1. Open `editor.html` in browser
-2. Click any text to edit (auto-saves to localStorage)
-3. When ready to commit: Open browser console → Run `exportSlides()`
-4. Paste output into `slides.json`
-5. Commit: `git add slides.json && git commit -m "Update slides" && git push`
-6. Use `git log slides.json` to see history
-7. Revert: `git checkout <commit-hash> slides.json`
+A concise 15-slide website presentation based on Gradient's vision and product story. Built using React, Tailwind CSS, and simple gradient backgrounds.
 
-## Files
+## Editing Slides
 
-- `index.html` - Presentation view (loads from slides.json → localStorage)
-- `editor.html` - Edit mode (saves to localStorage)
-- `slides.json` - Git-tracked source of truth (title + subtitle only)
+All slide content is stored in `slides.json`. To edit:
+
+1. Open `slides.json` in your code editor
+2. Edit the `title` and `subtitle` fields for any slide
+3. Save the file
+4. Refresh the browser to see changes
+5. Commit changes to git for version history
+
+**That's it.** No localStorage, no export buttons - just edit JSON, commit to git.
 
 ## Links
 
 - **GitHub**: https://github.com/mlcl-ai/t008_minideck_v2
-- **Notion Task**: https://www.notion.so/minideck_v2-2a8cdd12fc5e819ba597e04f5f3a3169
+- **Notion Task**: TBD
 - **Owner**: Ben Holmes
+
+## Navigation
+
+- Arrow keys or space to advance
+- Click thumbnails to jump to specific slides
+- Fullscreen button for presentation mode
 
