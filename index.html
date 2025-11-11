@@ -27,110 +27,152 @@ const PitchDeck = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [previousSlide, setPreviousSlide] = useState(0);
+  const [isEditing, setIsEditing] = useState(false);
   const containerRef = useRef(null);
+
+  const [slides, setSlides] = useState([
+    {
+      title: "Gradient",
+      subtitle: "Data trains, vision teaches",
+      background: "#000000",
+      textColor: "white",
+      isIntro: true
+    },
+    {
+      title: "Our vision is to break down the walls between technical experts, AI systems, and physical automation to accelerate biology and medicine across all scales.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      textColor: "white"
+    },
+    {
+      title: "Today's labs are rich in data but poor in comprehension because of data and system silos.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      textColor: "white"
+    },
+    {
+      title: "We believe that the cambrian moment is coming through human-AI co-evolution.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+      textColor: "white"
+    },
+    {
+      title: "We are Gradient, and our philosophy is: \"data trains, vision teaches.\" We are a human-centric company accelerating the next generation of collaborative tools.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+      textColor: "white"
+    },
+    {
+      title: "Here is the team that can make this happen.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+      textColor: "white"
+    },
+    {
+      title: "This team has laid a solid foundation for our vision, and we are now at an inflection point with our first product to benefit scientists.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
+      textColor: "white"
+    },
+    {
+      title: "Our first product, LabOS, equips AI with its \"eyes and hands,\" kicking off co-evolution in the domain of biotech.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+      textColor: "black"
+    },
+    {
+      title: "Demo: AI with eyes and hands",
+      subtitle: "",
+      background: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+      textColor: "black"
+    },
+    {
+      title: "What you see is not purely human-AI collaboration; in the process, we are building a world model for biotechnology and clinical use cases.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+      textColor: "black"
+    },
+    {
+      title: "We have already gotten a lot interest from pharma about how Lab-OS can create value and in we are in active partnership discussions.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      textColor: "white"
+    },
+    {
+      title: "This solution can also be used in a clinical settings and we are engaged setting up a pilot with Stanford teaching hospital.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      textColor: "white"
+    },
+    {
+      title: "There is a huge market potential in creating operational efficiency and reducing errors in pharma and pathology; that is our starting point and low hanging fruit.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+      textColor: "white"
+    },
+    {
+      title: "In the near term, we are creating a subscription and partnership model to gain customers and to create a dataset.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+      textColor: "white"
+    },
+    {
+      title: "In the long-term, our objective is to leverage our vision datasets of high-value tasks and world model which facilitates humans and robots to execute and train a wide variety of high-value tasks.",
+      subtitle: "",
+      background: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+      textColor: "white"
+    },
+    {
+      title: "We are fundraising for $30m and this will enable the key milestone of commercialization.",
+      subtitle: "",
+      background: "#000000",
+      textColor: "white"
+    }
+  ]);
 
   const deck = {
     name: "Gradient",
     tagline: "Data trains, vision teaches",
-    slides: [
-      {
-        title: "Gradient",
-        subtitle: "Data trains, vision teaches",
-        background: "#000000",
-        textColor: "white",
-        isIntro: true
-      },
-      {
-        title: "Our vision is to break down the walls between technical experts, AI systems, and physical automation to accelerate biology and medicine across all scales.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-        textColor: "white"
-      },
-      {
-        title: "Today's labs are rich in data but poor in comprehension because of data and system silos.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-        textColor: "white"
-      },
-      {
-        title: "We believe that the cambrian moment is coming through human-AI co-evolution.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-        textColor: "white"
-      },
-      {
-        title: "We are Gradient, and our philosophy is: \"data trains, vision teaches.\" We are a human-centric company accelerating the next generation of collaborative tools.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
-        textColor: "white"
-      },
-      {
-        title: "Here is the team that can make this happen.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
-        textColor: "white"
-      },
-      {
-        title: "This team has laid a solid foundation for our vision, and we are now at an inflection point with our first product to benefit scientists.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
-        textColor: "white"
-      },
-      {
-        title: "Our first product, LabOS, equips AI with its \"eyes and hands,\" kicking off co-evolution in the domain of biotech.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
-        textColor: "black"
-      },
-      {
-        title: "Demo: AI with eyes and hands",
-        subtitle: "",
-        background: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
-        textColor: "black"
-      },
-      {
-        title: "What you see is not purely human-AI collaboration; in the process, we are building a world model for biotechnology and clinical use cases.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
-        textColor: "black"
-      },
-      {
-        title: "We have already gotten a lot interest from pharma about how Lab-OS can create value and in we are in active partnership discussions.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-        textColor: "white"
-      },
-      {
-        title: "This solution can also be used in a clinical settings and we are engaged setting up a pilot with Stanford teaching hospital.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-        textColor: "white"
-      },
-      {
-        title: "There is a huge market potential in creating operational efficiency and reducing errors in pharma and pathology; that is our starting point and low hanging fruit.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-        textColor: "white"
-      },
-      {
-        title: "In the near term, we are creating a subscription and partnership model to gain customers and to create a dataset.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
-        textColor: "white"
-      },
-      {
-        title: "In the long-term, our objective is to leverage our vision datasets of high-value tasks and world model which facilitates humans and robots to execute and train a wide variety of high-value tasks.",
-        subtitle: "",
-        background: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
-        textColor: "white"
-      },
-      {
-        title: "We are fundraising for $30m and this will enable the key milestone of commercialization.",
-        subtitle: "",
-        background: "#000000",
-        textColor: "white"
+    slides: slides
+  };
+
+  // Load from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('gradient_slides_draft');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setSlides(parsed);
+      } catch (e) {
+        console.error('Failed to load saved slides:', e);
       }
-    ]
+    }
+  }, []);
+
+  // Save to localStorage when slides change
+  useEffect(() => {
+    if (slides.length > 0) {
+      localStorage.setItem('gradient_slides_draft', JSON.stringify(slides));
+    }
+  }, [slides]);
+
+  // Export function for console
+  useEffect(() => {
+    window.exportSlides = () => {
+      console.log('Copy this array and paste it into index.html (line ~32):');
+      console.log(JSON.stringify(slides, null, 2));
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(JSON.stringify(slides, null, 2));
+        console.log('✅ Copied to clipboard! Paste into index.html slides array');
+      }
+    };
+    console.log('💡 Edit slides by clicking text. To save to git: run exportSlides() in console');
+  }, [slides]);
+
+  const updateSlide = (index, field, value) => {
+    const newSlides = [...slides];
+    newSlides[index][field] = value;
+    setSlides(newSlides);
   };
 
   const nextSlide = () => {
@@ -201,7 +243,7 @@ const PitchDeck = () => {
     setCurrentSlide(index);
   };
 
-  const SlideContent = ({ slide, isFullscreen }) => {
+  const SlideContent = ({ slide, isFullscreen, slideIndex }) => {
     return (
       <div className="w-full h-full relative" style={{background: slide.background}}>
       
@@ -209,27 +251,37 @@ const PitchDeck = () => {
         
         <div className={slide.isIntro ? 'text-center' : (isFullscreen ? 'max-w-5xl' : 'max-w-4xl')} style={{ position: 'relative' }}>
           
-          <h1 className={`blur-text ${
-            slide.isIntro 
-              ? (isFullscreen ? 'text-8xl mb-8' : 'text-6xl mb-6') + ' font-light tracking-widest'
-              : (isFullscreen ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-2xl md:text-3xl lg:text-4xl') + ' font-bold tracking-tight'
-          } leading-tight ${slide.textColor === 'white' ? 'text-white' : 'text-black'}`} 
-          style={{
-            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
-            textShadow: 'none'
-          }}>
-            {slide.title}
-          </h1>
-          {slide.subtitle && (
-            <h2 className={`blur-text ${
-              slide.isIntro
-                ? (isFullscreen ? 'text-2xl' : 'text-lg') + ' text-gray-500 tracking-wider font-light'
-                : (isFullscreen ? 'text-2xl md:text-3xl lg:text-4xl mt-4' : 'text-lg md:text-xl lg:text-2xl mt-3') + ' font-normal tracking-tight ' + (slide.textColor === 'white' ? 'text-white/90' : 'text-black/80')
-            } leading-tight`} style={{
+          <h1 
+            contentEditable={!isFullscreen}
+            suppressContentEditableWarning
+            onBlur={(e) => updateSlide(slideIndex, 'title', e.target.textContent)}
+            className={`blur-text ${
+              slide.isIntro 
+                ? (isFullscreen ? 'text-8xl mb-8' : 'text-6xl mb-6') + ' font-light tracking-widest'
+                : (isFullscreen ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-2xl md:text-3xl lg:text-4xl') + ' font-bold tracking-tight'
+            } leading-tight ${slide.textColor === 'white' ? 'text-white' : 'text-black'} ${!isFullscreen ? 'cursor-text hover:outline hover:outline-2 hover:outline-white/30' : ''}`}
+            style={{
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
               textShadow: 'none'
             }}>
-              {slide.subtitle}
+            {slide.title}
+          </h1>
+          {(slide.subtitle || !isFullscreen) && (
+            <h2 
+              contentEditable={!isFullscreen}
+              suppressContentEditableWarning
+              onBlur={(e) => updateSlide(slideIndex, 'subtitle', e.target.textContent)}
+              className={`blur-text ${
+                slide.isIntro
+                  ? (isFullscreen ? 'text-2xl' : 'text-lg') + ' text-gray-500 tracking-wider font-light'
+                  : (isFullscreen ? 'text-2xl md:text-3xl lg:text-4xl mt-4' : 'text-lg md:text-xl lg:text-2xl mt-3') + ' font-normal tracking-tight ' + (slide.textColor === 'white' ? 'text-white/90' : 'text-black/80')
+              } leading-tight ${!isFullscreen ? 'cursor-text hover:outline hover:outline-2 hover:outline-white/30' : ''} ${!slide.subtitle && !isFullscreen ? 'opacity-30' : ''}`}
+              style={{
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                textShadow: 'none',
+                minHeight: !isFullscreen ? '1.5em' : 'auto'
+              }}>
+              {slide.subtitle || (isFullscreen ? '' : 'Click to add subtitle')}
             </h2>
           )}
         </div>
@@ -292,7 +344,7 @@ const PitchDeck = () => {
         {isFullscreen ? (
           /* Fullscreen presentation mode */
           <div className="h-screen flex items-center justify-center">
-            <SlideContent slide={deck.slides[currentSlide]} isFullscreen={true} />
+            <SlideContent slide={deck.slides[currentSlide]} isFullscreen={true} slideIndex={currentSlide} />
           </div>
         ) : (
           /* Normal slide view with aspect ratio */
@@ -300,7 +352,7 @@ const PitchDeck = () => {
             <div className="w-full max-w-6xl">
               <div className="relative bg-white shadow-2xl" style={{paddingBottom: '56.25%'}}>
                 <div className="absolute inset-0">
-                  <SlideContent slide={deck.slides[currentSlide]} isFullscreen={false} />
+                  <SlideContent slide={deck.slides[currentSlide]} isFullscreen={false} slideIndex={currentSlide} />
                 </div>
               </div>
               
