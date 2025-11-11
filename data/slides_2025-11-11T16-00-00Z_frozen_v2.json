@@ -1,0 +1,99 @@
+{
+  "timestamp": "2025-11-11T16:00:00Z",
+  "note": "Frozen content from v2_2_3.html - edited topic sentences and bylines",
+  "name": "Gradient",
+  "tagline": "Data trains, vision teaches",
+  "slides": [
+    {
+      "title": "Gradient: Data Trains, Vision Teaches",
+      "subtitle": "Our mission is to break down walls between technical experts, AI and physical automation to accelerate biology and medicine.",
+      "background": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "textColor": "white"
+    },
+    {
+      "title": "Our labs and hospitals are rich in data but poor in comprehension",
+      "subtitle": "Data and system silos, and inefficient collaboration of humans with learning systems are to blame.",
+      "background": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      "textColor": "white"
+    },
+    {
+      "title": "Vision changes everything.",
+      "subtitle": "The Cambrian moment is coming.",
+      "background": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+      "textColor": "white"
+    },
+    {
+      "title": "We are Gradient, and our philosophy is: \"data trains, vision teaches.\"",
+      "subtitle": "We are a human-centric company accelerating the next generation of collaborative tools.",
+      "background": "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+      "textColor": "white"
+    },
+    {
+      "title": "Here is the team that can make this happen.",
+      "subtitle": "Le is our scientific co-founder, professor at the Stanford teaching hospital. Sandy is our head of product, currently leading AI strategy at a leading biotech 2C company. Ben is our head of data, currently head of data sciences and automation at Orbital Therapeutics.",
+      "background": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+      "textColor": "white"
+    },
+    {
+      "title": "This team has laid a solid foundation and we are now at an inflection point.",
+      "subtitle": "Our Lab-OS is ready for users, and Clin-OS is in design.",
+      "background": "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
+      "textColor": "white"
+    },
+    {
+      "title": "Our first product, LabOS, equips AI with its \"eyes and hands\".",
+      "subtitle": "Kicking off co-evolution in the domain of biotech.",
+      "background": "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+      "textColor": "black"
+    },
+    {
+      "title": "Demo: AI with eyes and hands",
+      "subtitle": "",
+      "background": "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+      "textColor": "black"
+    },
+    {
+      "title": "What you see begins as human-AI collaboration.",
+      "subtitle": "... and the inception of a spatial world model for deep science.",
+      "background": "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+      "textColor": "black"
+    },
+    {
+      "title": "We have already gotten a lot interest from pharma about how Lab-OS.",
+      "subtitle": "We are in active partnership discussions to capture ambient data in a pharmaceutical context.",
+      "background": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "textColor": "white"
+    },
+    {
+      "title": "Our Clin-OS solution targets clinical pathology.",
+      "subtitle": "We are engaged setting up a pilot with Stanford teaching hospital.",
+      "background": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      "textColor": "white"
+    },
+    {
+      "title": "There is a huge market potential in creating operational efficiency and reducing errors in pharma and pathology.",
+      "subtitle": "",
+      "background": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+      "textColor": "white"
+    },
+    {
+      "title": "In the near term, we are creating a subscription and partnership model to gain customers and to create a dataset.",
+      "subtitle": "",
+      "background": "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+      "textColor": "white"
+    },
+    {
+      "title": "Our long-term objective is to leverage our vision datasets of high-value tasks and world model which rewards human and robotic collaboration to execute and train a wide variety of high-value tasks.",
+      "subtitle": "",
+      "background": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+      "textColor": "white"
+    },
+    {
+      "title": "We are fundraising for $30m and this will enable the key milestone of commercialization.",
+      "subtitle": "",
+      "background": "#000000",
+      "textColor": "white"
+    }
+  ]
+}
+
