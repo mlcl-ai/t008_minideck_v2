@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gradient - Mini Deck</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .blur-text {
+      filter: blur(0);
+      transition: filter 0.3s ease;
+    }
+
+    .slide-content:hover .blur-text {
+      filter: blur(0);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+const PitchDeck = () => {
+  const { useState, Fragment, useRef, useEffect } = React;
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [previousSlide, setPreviousSlide] = useState(0);
+  const containerRef = useRef(null);
+
+  const deck = {
+    name: "Gradient",
+    tagline: "Data trains, vision teaches",
+    slides: [
+      {
+        title: "Gradient",
+        subtitle: "Data trains, vision teaches",
+        background: "#000000",
+        textColor: "white",
+        isIntro: true
+      },
+      {
+        title: "Our vision is to break down the walls between technical experts, AI systems, and physical automation to accelerate biology and medicine across all scales.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        textColor: "white"
+      },
+      {
+        title: "Today's labs are rich in data but poor in comprehension because of data and system silos.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        textColor: "white"
+      },
+      {
+        title: "We believe that the cambrian moment is coming through human-AI co-evolution.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+        textColor: "white"
+      },
+      {
+        title: "We are Gradient, and our philosophy is: \"data trains, vision teaches.\" We are a human-centric company accelerating the next generation of collaborative tools.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+        textColor: "white"
+      },
+      {
+        title: "Here is the team that can make this happen.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+        textColor: "white"
+      },
+      {
+        title: "This team has laid a solid foundation for our vision, and we are now at an inflection point with our first product to benefit scientists.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
+        textColor: "white"
+      },
+      {
+        title: "Our first product, LabOS, equips AI with its \"eyes and hands,\" kicking off co-evolution in the domain of biotech.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+        textColor: "black"
+      },
+      {
+        title: "Demo: AI with eyes and hands",
+        subtitle: "",
+        background: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+        textColor: "black"
+      },
+      {
+        title: "What you see is not purely human-AI collaboration; in the process, we are building a world model for biotechnology and clinical use cases.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+        textColor: "black"
+      },
+      {
+        title: "We have already gotten a lot interest from pharma about how Lab-OS can create value and in we are in active partnership discussions.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        textColor: "white"
+      },
+      {
+        title: "This solution can also be used in a clinical settings and we are engaged setting up a pilot with Stanford teaching hospital.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        textColor: "white"
+      },
+      {
+        title: "There is a huge market potential in creating operational efficiency and reducing errors in pharma and pathology; that is our starting point and low hanging fruit.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+        textColor: "white"
+      },
+      {
+        title: "In the near term, we are creating a subscription and partnership model to gain customers and to create a dataset.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+        textColor: "white"
+      },
+      {
+        title: "In the long-term, our objective is to leverage our vision datasets of high-value tasks and world model which facilitates humans and robots to execute and train a wide variety of high-value tasks.",
+        subtitle: "",
+        background: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+        textColor: "white"
+      },
+      {
+        title: "We are fundraising for $30m and this will enable the key milestone of commercialization.",
+        subtitle: "",
+        background: "#000000",
+        textColor: "white"
+      }
+    ]
+  };
+
+  const nextSlide = () => {
+    if (currentSlide < deck.slides.length - 1) {
+      setPreviousSlide(currentSlide);
+      setCurrentSlide(currentSlide + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (currentSlide > 0) {
+      setPreviousSlide(currentSlide);
+      setCurrentSlide(currentSlide - 1);
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevSlide();
+      } else if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'Escape' && isFullscreen) {
+        exitFullscreen();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentSlide, isFullscreen]);
+
+  // Fullscreen functionality
+  const enterFullscreen = () => {
+    if (containerRef.current) {
+      if (containerRef.current.requestFullscreen) {
+        containerRef.current.requestFullscreen();
+      } else if (containerRef.current.webkitRequestFullscreen) {
+        containerRef.current.webkitRequestFullscreen();
+      }
+      setIsFullscreen(true);
+    }
+  };
+
+  const exitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+    setIsFullscreen(false);
+  };
+
+  React.useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement || !!document.webkitFullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  const goToSlide = (index) => {
+    setPreviousSlide(currentSlide);
+    setCurrentSlide(index);
+  };
+
+  const SlideContent = ({ slide, isFullscreen }) => {
+    return (
+      <div className="w-full h-full relative" style={{background: slide.background}}>
+      
+      <div className={`relative h-full p-6 md:p-8 lg:p-10 flex ${slide.isIntro ? 'items-center justify-center' : 'flex-col justify-center'} slide-content`} style={{ zIndex: 30 }}>
+        
+        <div className={slide.isIntro ? 'text-center' : (isFullscreen ? 'max-w-5xl' : 'max-w-4xl')} style={{ position: 'relative' }}>
+          
+          <h1 className={`blur-text ${
+            slide.isIntro 
+              ? (isFullscreen ? 'text-8xl mb-8' : 'text-6xl mb-6') + ' font-light tracking-widest'
+              : (isFullscreen ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-2xl md:text-3xl lg:text-4xl') + ' font-bold tracking-tight'
+          } leading-tight ${slide.textColor === 'white' ? 'text-white' : 'text-black'}`} 
+          style={{
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+            textShadow: 'none'
+          }}>
+            {slide.title}
+          </h1>
+          {slide.subtitle && (
+            <h2 className={`blur-text ${
+              slide.isIntro
+                ? (isFullscreen ? 'text-2xl' : 'text-lg') + ' text-gray-500 tracking-wider font-light'
+                : (isFullscreen ? 'text-2xl md:text-3xl lg:text-4xl mt-4' : 'text-lg md:text-xl lg:text-2xl mt-3') + ' font-normal tracking-tight ' + (slide.textColor === 'white' ? 'text-white/90' : 'text-black/80')
+            } leading-tight`} style={{
+              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+              textShadow: 'none'
+            }}>
+              {slide.subtitle}
+            </h2>
+          )}
+        </div>
+      </div>
+      
+      {/* Slide controls */}
+      <div className={`absolute ${isFullscreen ? 'bottom-6 right-6 gap-3' : 'bottom-4 right-4 gap-2'} flex items-center z-20`}>
+        <button
+          onClick={prevSlide}
+          disabled={currentSlide === 0}
+          className={`${isFullscreen ? 'w-10 h-10' : 'w-8 h-8'} flex items-center justify-center text-white/70 hover:text-white disabled:text-white/20 disabled:cursor-not-allowed transition-colors`}
+          aria-label="Previous slide"
+        >
+          <span className={isFullscreen ? 'text-2xl' : 'text-lg'}>←</span>
+        </button>
+        <span className={`${isFullscreen ? 'text-sm' : 'text-xs'} text-white/70 font-light`}>
+          {currentSlide + 1} / {deck.slides.length}
+        </span>
+        <button
+          onClick={nextSlide}
+          disabled={currentSlide === deck.slides.length - 1}
+          className={`${isFullscreen ? 'w-10 h-10' : 'w-8 h-8'} flex items-center justify-center text-white/70 hover:text-white disabled:text-white/20 disabled:cursor-not-allowed transition-colors`}
+          aria-label="Next slide"
+        >
+          <span className={isFullscreen ? 'text-2xl' : 'text-lg'}>→</span>
+        </button>
+        {!isFullscreen && (
+          <>
+            <span className="mx-1 text-white/30">|</span>
+            <button
+              onClick={enterFullscreen}
+              className="w-8 h-8 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+              aria-label="Present fullscreen"
+              title="Present fullscreen"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+              </svg>
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+    );
+  };
+
+  return (
+    <Fragment>
+      {/* Header with title */}
+      {!isFullscreen && (
+        <div className="fixed top-0 left-0 right-0 z-10 bg-white/95 backdrop-blur-sm shadow-sm">
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <h1 className="text-lg font-bold text-gray-900">{deck.name}</h1>
+            <p className="text-sm text-gray-600">{deck.tagline}</p>
+          </div>
+        </div>
+      )}
+
+      <div ref={containerRef} className={isFullscreen ? "min-h-screen bg-black" : "min-h-screen bg-white"}>
+        {isFullscreen ? (
+          /* Fullscreen presentation mode */
+          <div className="h-screen flex items-center justify-center">
+            <SlideContent slide={deck.slides[currentSlide]} isFullscreen={true} />
+          </div>
+        ) : (
+          /* Normal slide view with aspect ratio */
+          <div className="min-h-screen flex items-center justify-center p-4 md:p-8 pt-32">
+            <div className="w-full max-w-6xl">
+              <div className="relative bg-white shadow-2xl" style={{paddingBottom: '56.25%'}}>
+                <div className="absolute inset-0">
+                  <SlideContent slide={deck.slides[currentSlide]} isFullscreen={false} />
+                </div>
+              </div>
+              
+              {/* Slide thumbnails */}
+              <div className="mt-6 flex gap-2 justify-center overflow-x-auto pb-4">
+                {deck.slides.map((slide, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`flex-shrink-0 w-32 rounded-lg overflow-hidden transition-all ${
+                      currentSlide === index 
+                        ? 'ring-4 ring-blue-500 shadow-lg' 
+                        : 'ring-2 ring-gray-200 hover:ring-gray-300 opacity-60 hover:opacity-100'
+                    }`}
+                  >
+                    <div className="relative" style={{paddingBottom: '56.25%'}}>
+                      <div 
+                        className="absolute inset-0 p-2 flex items-center"
+                        style={{background: slide.background}}
+                      >
+                        <div className={`text-[0.5rem] font-semibold leading-tight line-clamp-3 ${
+                          slide.textColor === 'white' ? 'text-white' : 'text-black'
+                        }`}>
+                          {slide.title}
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </Fragment>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<PitchDeck />);
+  </script>
+</body>
+</html>
+
