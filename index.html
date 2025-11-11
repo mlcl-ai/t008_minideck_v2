@@ -145,25 +145,6 @@ const PitchDeck = () => {
     });
   }
 
-  // Also check for slides.json (git-tracked version)
-  useEffect(() => {
-    fetch('slides.json')
-      .then(res => res.ok ? res.json() : null)
-      .then(jsonSlides => {
-        if (jsonSlides) {
-          jsonSlides.forEach((jsonSlide, i) => {
-            if (deck.slides[i]) {
-              deck.slides[i].title = jsonSlide.title;
-              deck.slides[i].subtitle = jsonSlide.subtitle || "";
-            }
-          });
-          // Force re-render
-          setCurrentSlide(prev => prev);
-        }
-      })
-      .catch(() => {}); // Ignore if slides.json doesn't exist
-  }, []);
-
   const nextSlide = () => {
     if (currentSlide < deck.slides.length - 1) {
       setPreviousSlide(currentSlide);
