@@ -133,6 +133,18 @@ const PitchDeck = () => {
     ]
   };
 
+  // Load saved content from editor
+  const saved = localStorage.getItem('gradient_slides');
+  if (saved) {
+    const savedSlides = JSON.parse(saved);
+    savedSlides.forEach((savedSlide, i) => {
+      if (deck.slides[i]) {
+        deck.slides[i].title = savedSlide.title;
+        deck.slides[i].subtitle = savedSlide.subtitle || "";
+      }
+    });
+  }
+
   const nextSlide = () => {
     if (currentSlide < deck.slides.length - 1) {
       setPreviousSlide(currentSlide);
